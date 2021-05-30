@@ -2,6 +2,8 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:mstraders/pages/grass.dart';
+import 'package:mstraders/pages/wallpaperpage.dart';
 
 class Myhomepage extends StatefulWidget {
   @override
@@ -129,12 +131,13 @@ class _MyhomepageState extends State<Myhomepage> {
                                   color: Colors.orangeAccent, width: 4)),
                           padding: EdgeInsets.all(5),
                           margin: EdgeInsets.all(5),
-                          child: Image.network(
+                          child: ClipRRect(
+                              child: Image.network(
                             'https://www.vladana-kristena.cz/wp-upload/41879_1-5-panel-ks-hd-vytisknout-jeden-kus-karikatura-zdi-plak%C3%A1ty/pic.jpeg',
                             height: MediaQuery.of(context).size.height / 4.5,
                             width: MediaQuery.of(context).size.width / 6.5,
                             fit: BoxFit.cover,
-                          )),
+                          ))),
                       Text(
                         "Canvas",
                         textAlign: TextAlign.center,
@@ -143,6 +146,12 @@ class _MyhomepageState extends State<Myhomepage> {
                       ),
                     ]),
                   ),
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => medicineOrder('Wallpaper')));
+                  },
                 ),
                 InkWell(
                   child: Container(
@@ -244,6 +253,12 @@ class _MyhomepageState extends State<Myhomepage> {
                       )
                     ]),
                   ),
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => grasspage('Wallpaper')));
+                  },
                 ),
                 InkWell(
                   child: Container(
@@ -350,35 +365,29 @@ class _MyhomepageState extends State<Myhomepage> {
                     ),
                   ]))
             ]),
-            
-            Row(mainAxisAlignment: MainAxisAlignment.center,
-             children: [
-              
+            Row(mainAxisAlignment: MainAxisAlignment.center, children: [
               Container(
                   decoration: BoxDecoration(
                       color: Colors.white38,
                       borderRadius: BorderRadius.circular(44),
                       border: Border.all(color: Colors.black, width: 4)),
                   child: Row(children: [
-                     Container(
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(22),
-                              border: Border.all(
-                                  color: Colors.orangeAccent, width: 4)),
-                          padding: EdgeInsets.all(5),
-                          margin: EdgeInsets.all(5),
-                          child: Image.network(
-                            'https://www.vladana-kristena.cz/wp-upload/41879_1-5-panel-ks-hd-vytisknout-jeden-kus-karikatura-zdi-plak%C3%A1ty/pic.jpeg',
-                            height: MediaQuery.of(context).size.height / 4.5,
-                            width: MediaQuery.of(context).size.width / 6.5,
-                            fit: BoxFit.cover,
-                          )),
-
-                          Container(
-                            child: Text("sadhfsdhfjsdhfjshfsjhfksjhfsjkhfaskjdhfsjkadfhsdjks")
-
-                          )
-                    
+                    Container(
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(22),
+                            border: Border.all(
+                                color: Colors.orangeAccent, width: 4)),
+                        padding: EdgeInsets.all(5),
+                        margin: EdgeInsets.all(5),
+                        child: Image.network(
+                          'https://www.vladana-kristena.cz/wp-upload/41879_1-5-panel-ks-hd-vytisknout-jeden-kus-karikatura-zdi-plak%C3%A1ty/pic.jpeg',
+                          height: MediaQuery.of(context).size.height / 4.5,
+                          width: MediaQuery.of(context).size.width / 6.5,
+                          fit: BoxFit.cover,
+                        )),
+                    Container(
+                        child: Text(
+                            "sadhfsdhfjsdhfjshfsjhfksjhfsjkhfaskjdhfsjkadfhsdjks"))
                   ]))
             ])
           ],
