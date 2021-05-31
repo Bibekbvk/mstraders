@@ -2,21 +2,23 @@
 
 import 'package:flutter/material.dart';
 import 'package:mstraders/database.dart';
+import 'package:mstraders/modules/grass.dart';
 import 'package:mstraders/modules/wallpaper.dart';
 
 import '../constant.dart';
-class medicineOrder extends StatefulWidget {
+import '../home.dart';
+class wallpaper extends StatefulWidget {
   @override
   final String category;
 
-  medicineOrder(this.category);
+  wallpaper(this.category);
 
-  _medicineOrderState createState() => _medicineOrderState();
+  _wallpaperState createState() => _wallpaperState();
 }
 
-class _medicineOrderState extends State<medicineOrder> {
+class _wallpaperState extends State<wallpaper> {
   DatabaseService db = DatabaseService();
-  List<Items> medList = new List();
+  List<Grass> grassLis = new List();
   ScrollController _scrollController = new ScrollController();
 
   TextEditingController search = new TextEditingController();
@@ -36,7 +38,7 @@ class _medicineOrderState extends State<medicineOrder> {
         if (currentDataLength >= 10) {
           print("List bigger than 10");
 
-          offset = medList.length;
+          offset = grassLis.length;
           fetch(offset);
         }
 
@@ -97,135 +99,150 @@ class _medicineOrderState extends State<medicineOrder> {
       ),
       body: ListView.builder(
         controller: _scrollController,
-        itemCount: medList.length,
+        itemCount: grassLis.length,
         itemBuilder: (BuildContext context, int index) {
           return Container(
-            padding: EdgeInsets.all(10),
+            padding: EdgeInsets.all(5),
             color: Colors.white,
-            child: Row(
+            child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                  Container(
-                      padding: EdgeInsets.all(5),
-                      height: 120,
-                      width: 100,
-                      decoration: BoxDecoration(
-                          border: Border.all(color: Colors.green, width: 4),
-                          borderRadius: BorderRadius.circular(22)),
-                      child: ClipRRect(
-                          borderRadius: BorderRadius.all(Radius.circular(10)),
-                          child: Image.network(medList[index].others,
-                              fit: BoxFit.cover))),
-                  Container(
-                    width: 100,
-                    child: Text(
-                      "${medList[index].name}",
-                      style: TextStyle(
-                          fontSize: 12,
-                          color: Colors.lightGreen,
-                          fontWeight: FontWeight.w300),
-                    ),
-                  ),
-                  Container(
-                    width: 70,
-                    child: Text(
-                      "${medList[index].items}",
-                      style: TextStyle(
-                          fontSize: 8,
-                          color: Colors.lightGreen,
-                          fontWeight: FontWeight.w800),
-                    ),
-                  )
-                ]),
-                Expanded(
-                  flex: 7,
+                      InkWell(
                   child: Container(
-                      width: 150,
-                      height: 200,
-                      child: Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Text("Name:${medList[index].name}"),
-                            Text("Name:${medList[index].price}"),
-                            Text("Price:${medList[index].descr}"),
-                            Text("BY:${medList[index].type}"),
-                            Container(
-                              child: RaisedButton(
-                                
-                                child:Text("Buy"),
-                                color: Colors.orange,
-                                onPressed: () {
-
-                                //   print("hello");
-                                //   showDialog(
-                                //     context: context,
-                                //     builder: (context) => AlertDialog(
-                                //       title: Text(
-                                //           "please enter you active number"),
-                                //       content: TextField(
-                                //         controller: contact,
-                                //         decoration: InputDecoration(),
-                                //       ),
-                                //       actions: [
-                                //         RaisedButton(
-                                //           child: Text("Submit"),
+                    // height: MediaQuery.of(context).size.height / 2,
+                    // width: MediaQuery.of(context).size.width / 2,
+                    padding: EdgeInsets.all(2),
+                    margin: EdgeInsets.all(2),
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(22),
+                        border: Border.all(color: Colors.orange, width: 1)),
+                    child: Column(children: [
+                      Container(
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(22),
+                              border: Border.all(
+                          color: Colors.orangeAccent, width: 2)),
+                          padding: EdgeInsets.all(5),
+                          margin: EdgeInsets.all(5),
+                          child: ClipRRect(
+                              child: Image.network(
+                            '${grassLis[index].images}',
+                            height: MediaQuery.of(context).size.height / 2,
+                            width: MediaQuery.of(context).size.width / 1.3,
+                            fit: BoxFit.cover,
+                          ))),
+                      // Text(
+                      //   "Canvas",
+                      //   textAlign: TextAlign.center,
+                      //   style: TextStyle(
+                      //       fontSize: 22, fontWeight: FontWeight.w900),
+                      // ),
+                      Text("Category:${grassLis[index].type}"),
+                      Text("Name:${grassLis[index].name}"),
+                         Text("Stock:${grassLis[index].items}"),
+                            Text("Name:${grassLis[index].price}"),
+                               Text("Name:${grassLis[index].others}"),
+                                  Text("Made in:${grassLis[index].made}"),
+                    
+                              Container(
+                                child: ElevatedButton(
+                                  //hoverColor: Colors.blueAccent,
+                                  
+                                  child: Text("Order this item"),
+                                  onPressed:(){
+                                       print("hello");
+                                      
+                                  showDialog(
+                                    context: context,
+                                    builder: (context) => AlertDialog(
+                                      title: Text(
+                                          "Please enter you active number, technician will call you for more details"),
+                                      content: TextField(
+                                        controller: contact,
+                                        decoration: InputDecoration(
+                                          icon: Icon(Icons.contact_phone),
+                                          labelText: "Enter your active number"
+                                        ),
+                                      ),
+                                      actions: [
+                                        RaisedButton(
+                                          child: Text("Submit"),
+                                          color: Colors.cyanAccent,
+                                          onPressed: () async {
                                         
-                                //           onPressed: () async {
-                                            
                                        
-                                //             var res =
-                                //                 await db.insertMedicineOrder(
-                                //                     userid,
-                                //                     userid,
-                                //                     contact.text,
-                                //                     medList[index]
-                                //                         .generic_name);
+                                            var res =
+                                                await db.insertOrder(
+                                                    grassLis[index].P_id,
+                                                    grassLis[index].type,
+                                                    grassLis[index].name,
+                                                    contact.text,
+                                                    DateTime.now());
 
-                                //             if (res == 200) {
-                                //               showDialog(
-                                //                 context: context,
-                                //                 builder: (context) => AlertDialog(
-                                //                     title: Text(
-                                //                         "Successfully purchased, we will call you for more details")),
-                                //               );
+                                            if (res == 200) {
+                                              showDialog(
+                                                context: context,
+                                                builder: (context) => AlertDialog(
+                                                    title: Text(
+                                                        "Successfully purchased, we will call you for more details"),
+                                                        actions: [
+                                                          RaisedButton(
+                                                            child:Text("OK"),
+                                                            onPressed:(){
+                                                             Navigator.of(context, rootNavigator: true).pop();
 
-                                //               print("success");
+                                                            }
+                                                          )
+                                                        ],
+                                                        ),
+                                                        
+                                              );
+
+                                              print("success");
                                             
-                                //                  Navigator.push(
-                                //                   context,
-                                //                   MaterialPageRoute(
-                                //                       builder: (context) =>
-                                //                           myMedicines()));
+                                                //  Navigator.push(
+                                                //   context,
+                                                //   MaterialPageRoute(
+                                                //       builder: (context) =>
+                                                //          Myhomepage()));
                                                 
                                          
-                                //               // Navigator.pop(context);
-                                //               // Navigator.pop(context);
-                                //               // Navigator.push(
-                                //               //     context,
-                                //               //     MaterialPageRoute(
-                                //               //         builder: (context) =>
-                                //               //             myMedicines()));
-                                //             } else {
-                                //               print("failure");
-                                //             }
-                                //           },
-                                //         ),
-                                //        // RaisedButton(child: Text("Cancel"))
-                                //       ],
-                                //     ),
-                                //   );
-                                 },
-                              ),
-                            ),
-                            Divider(
-                              color: Colors.greenAccent,
-                              height: 2,
-                              thickness: 2,
-                            )
-                          ])),
+                                              // Navigator.pop(context);
+                                              // Navigator.pop(context);
+                                              // Navigator.push(
+                                              //     context,
+                                              //     MaterialPageRoute(
+                                              //         builder: (context) =>
+                                              //             myMedicines()));
+                                            } else {
+                                              print("failure");
+                                            }
+                                          },
+                                        ),
+                                       // RaisedButton(child: Text("Cancel"))
+                                      ],
+                                    ),
+                                  );
+
+
+                                  }
+                                    
+                                ),
+
+                              )
+                    ]),
+                  ),
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => wallpaper('Wallpaper')));
+                  },
                 ),
+
+
+
+                
               ],
             ),
           );
@@ -237,15 +254,15 @@ class _medicineOrderState extends State<medicineOrder> {
   fetch(int offset) async {
     print("in fetch");
 
-    var data = await db.allitem();
+    var data = await db.allgrass();
     currentDataLength = data.length;
     print("below data");
 
     print("out of loop");
 
     setState(() {
-      for (Items p in data) {
-        medList.add(p);
+      for (Grass p in data) {
+        grassLis.add(p);
       }
     });
   }

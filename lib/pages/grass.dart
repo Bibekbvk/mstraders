@@ -1,11 +1,10 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:mstraders/database.dart';
 import 'package:mstraders/modules/grass.dart';
 import 'package:mstraders/modules/wallpaper.dart';
 
 import '../constant.dart';
+import '../home.dart';
 class grasspage extends StatefulWidget {
   @override
   final String category;
@@ -120,14 +119,14 @@ class _grasspageState extends State<grasspage> {
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(22),
                               border: Border.all(
-                                  color: Colors.orangeAccent, width: 2)),
+                          color: Colors.orangeAccent, width: 2)),
                           padding: EdgeInsets.all(5),
                           margin: EdgeInsets.all(5),
                           child: ClipRRect(
                               child: Image.network(
                             '${grassLis[index].images}',
-                            height: MediaQuery.of(context).size.height / 2.3,
-                            width: MediaQuery.of(context).size.width / 1.8,
+                            height: MediaQuery.of(context).size.height / 2,
+                            width: MediaQuery.of(context).size.width / 1.3,
                             fit: BoxFit.cover,
                           ))),
                       // Text(
@@ -136,6 +135,99 @@ class _grasspageState extends State<grasspage> {
                       //   style: TextStyle(
                       //       fontSize: 22, fontWeight: FontWeight.w900),
                       // ),
+                      Text("Category:${grassLis[index].type}"),
+                      Text("Name:${grassLis[index].name}"),
+                         Text("Stock:${grassLis[index].items}"),
+                            Text("Name:${grassLis[index].price}"),
+                               Text("Name:${grassLis[index].others}"),
+                                  Text("Made in:${grassLis[index].made}"),
+                    
+                              Container(
+                                child: ElevatedButton(
+                                  //hoverColor: Colors.blueAccent,
+                                  
+                                  child: Text("Order this item"),
+                                  onPressed:(){
+                                       print("hello");
+                                      
+                                  showDialog(
+                                    context: context,
+                                    builder: (context) => AlertDialog(
+                                      title: Text(
+                                          "Please enter you active number, technician will call you for more details"),
+                                      content: TextField(
+                                        controller: contact,
+                                        decoration: InputDecoration(
+                                          icon: Icon(Icons.contact_phone),
+                                          labelText: "Enter your active number"
+                                        ),
+                                      ),
+                                      actions: [
+                                        RaisedButton(
+                                          child: Text("Submit"),
+                                          color: Colors.cyanAccent,
+                                          onPressed: () async {
+                                        
+                                       
+                                            var res =
+                                                await db.insertOrder(
+                                                    grassLis[index].P_id,
+                                                    grassLis[index].type,
+                                                    grassLis[index].name,
+                                                    contact.text,
+                                                    DateTime.now());
+
+                                            if (res == 200) {
+                                              showDialog(
+                                                context: context,
+                                                builder: (context) => AlertDialog(
+                                                    title: Text(
+                                                        "Successfully purchased, we will call you for more details"),
+                                                        actions: [
+                                                          RaisedButton(
+                                                            child:Text("OK"),
+                                                            onPressed:(){
+                                                             Navigator.of(context, rootNavigator: true).pop();
+
+                                                            }
+                                                          )
+                                                        ],
+                                                        ),
+                                                        
+                                              );
+
+                                              print("success");
+                                            
+                                                //  Navigator.push(
+                                                //   context,
+                                                //   MaterialPageRoute(
+                                                //       builder: (context) =>
+                                                //          Myhomepage()));
+                                                
+                                         
+                                              // Navigator.pop(context);
+                                              // Navigator.pop(context);
+                                              // Navigator.push(
+                                              //     context,
+                                              //     MaterialPageRoute(
+                                              //         builder: (context) =>
+                                              //             myMedicines()));
+                                            } else {
+                                              print("failure");
+                                            }
+                                          },
+                                        ),
+                                       // RaisedButton(child: Text("Cancel"))
+                                      ],
+                                    ),
+                                  );
+
+
+                                  }
+                                    
+                                ),
+
+                              )
                     ]),
                   ),
                   onTap: () {

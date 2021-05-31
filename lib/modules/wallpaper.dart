@@ -1,23 +1,27 @@
 import 'package:flutter/material.dart';
 
 
-class Items{
+class Wallpaper{
   final int P_id;
   final String type;
   final String name;
   final String descr;
-  final int price;
-  final int items;
+  final String price;
+  final String items;
   final String others;
+  final String made;
+  final String images;
+  
 
-
-  Items(
+  Wallpaper(
       {this.P_id,
       this.type,
       this.name,
       this.descr,
       this.price,
       this.items,
-      this.others, 
+      this.others,
+       this.made,
+       this.images, 
      });
 }

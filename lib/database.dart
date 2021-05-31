@@ -7,7 +7,7 @@ import 'package:http/http.dart' as http;
 
 class DatabaseService{
 
-Future<List<Items>> allitem() async {
+Future<List<Wallpaper>> allitem() async {
     var data = await http.get(
       "$BASE_URL/api/getwallpaper",
       
@@ -15,9 +15,9 @@ Future<List<Items>> allitem() async {
 
     var jsonData = json.decode((data.body));
 
-    List<Items> allitems = [];
+    List<Wallpaper> allitems = [];
     for (var each in jsonData) {
-      Items wallpaperList = Items(
+      Wallpaper wallpaperList = Wallpaper(
           P_id: each['P_id'],
           type: each['type'],
           name: each['name'],
@@ -25,6 +25,8 @@ Future<List<Items>> allitem() async {
           price: each['price'],
           items: each['items'],
           others: each['others'],
+          made: each['made'],
+          images: each['images']
           );
       allitems.add(wallpaperList);
     }
@@ -58,7 +60,24 @@ Future<List<Grass>> allgrass() async {
     return grass;
   }
 
-
+ 
+  Future<int> insertOrder( int PId,
+      String type, String name, String contact, DateTime time) async {
+    //var encodeduuid = Uri.encodeComponent(uuid)c
+    //var encodeProduct_id = Uri.encodeComponent(product_id);
+    var data = await http.get(
+      "$BASE_URL/api/insertOrder?P_id=$PId&type=$type&name=$name&contact=$contact&time=$time",
+    );
+    print("lamooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo");
+    int code = data.statusCode;
+    var jsonData = json.decode((data.body));
+    String val = jsonData["error"];
+    if (val == null) {
+      val = "";
+    }
+    print(val);
+    return code;
+  }
 
 
 

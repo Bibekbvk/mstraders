@@ -150,7 +150,7 @@ class _MyhomepageState extends State<Myhomepage> {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => medicineOrder('Wallpaper')));
+                            builder: (context) => wallpaper('Wallpaper')));
                   },
                 ),
                 InkWell(
@@ -291,6 +291,13 @@ class _MyhomepageState extends State<Myhomepage> {
                       )
                     ]),
                   ),
+                     onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => wallpaper('Wallpaper')));
+                  },
+
                 ),
                 InkWell(
                   child: Container(
