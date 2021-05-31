@@ -1,7 +1,11 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:mstraders/constant.dart';
+import 'package:mstraders/modules/canvas.dart';
 import 'package:mstraders/modules/grass.dart';
+import 'package:mstraders/modules/mulars.dart';
+import 'package:mstraders/modules/others.dart';
+import 'package:mstraders/modules/wallfoam.dart';
 import 'package:mstraders/modules/wallpaper.dart';
 import 'package:http/http.dart' as http;
 
@@ -34,6 +38,94 @@ Future<List<Wallpaper>> allitem() async {
   }
 
 
+
+Future<List<Canvass>> allCanvas() async {
+    var data = await http.get(
+      "$BASE_URL/api/getwallpaper",
+      
+    );
+
+    var jsonData = json.decode((data.body));
+
+    List<Canvass> canvas = [];
+    for (var each in jsonData) {
+      Canvass canvasList = Canvass(
+          P_id: each['P_id'],
+          type: each['type'],
+          name: each['name'],
+          descr: each['descr'],
+          price: each['price'],
+          items: each['items'],
+          others: each['others'],
+          made: each['made'],
+          images: each['images']
+          );
+      canvas.add(canvasList);
+    }
+    return canvas;
+  }
+
+
+
+
+
+Future<List<WallFoam>> allFoam() async {
+    var data = await http.get(
+      "$BASE_URL/api/getwallpaper",
+      
+    );
+
+    var jsonData = json.decode((data.body));
+
+    List<WallFoam> foam = [];
+    for (var each in jsonData) {
+      WallFoam foamList = WallFoam(
+          P_id: each['P_id'],
+          type: each['type'],
+          name: each['name'],
+          descr: each['descr'],
+          price: each['price'],
+          items: each['items'],
+          others: each['others'],
+          made: each['made'],
+          images: each['images']
+          );
+      foam.add(foamList);
+    }
+    return foam;
+  }
+
+
+
+
+Future<List<Others>> allother() async {
+    var data = await http.get(
+      "$BASE_URL/api/getwallpaper",
+      
+    );
+
+    var jsonData = json.decode((data.body));
+
+    List<Others> others = [];
+    for (var each in jsonData) {
+      Others otherList = Others(
+          P_id: each['P_id'],
+          type: each['type'],
+          name: each['name'],
+          descr: each['descr'],
+          price: each['price'],
+          items: each['items'],
+          others: each['others'],
+          made: each['made'],
+          images: each['images']
+          );
+      others.add(otherList);
+    }
+    return others;
+  }
+
+
+
 Future<List<Grass>> allgrass() async {
     var data = await http.get(
       "$BASE_URL/api/getgrass",
@@ -58,6 +150,33 @@ Future<List<Grass>> allgrass() async {
       grass.add(grassList);
     }
     return grass;
+  }
+  
+  
+Future<List<Mulars>> allMulars() async {
+    var data = await http.get(
+      "$BASE_URL/api/getgrass",
+      
+    );
+
+    var jsonData = json.decode((data.body));
+
+    List<Mulars> mulars = [];
+    for (var each in jsonData) {
+      Mulars mularsList = Mulars(
+          P_id: each['P_id'],
+          type: each['type'],
+          name: each['name'],
+          descr: each['descr'],
+          price: each['price'],
+          items: each['items'],
+          others: each['others'],
+          made: each['made'],
+          images: each['images']
+          );
+      mulars.add(mularsList);
+    }
+    return mulars;
   }
 
  

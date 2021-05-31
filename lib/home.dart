@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:mstraders/pages/grass.dart';
+import 'package:mstraders/pages/mularpage.dart';
 import 'package:mstraders/pages/wallpaperpage.dart';
 
 class Myhomepage extends StatefulWidget {
@@ -150,7 +151,7 @@ class _MyhomepageState extends State<Myhomepage> {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => wallpaper('Wallpaper')));
+                            builder: (context) => MularPage('Wallpaper')));
                   },
                 ),
                 InkWell(
@@ -184,6 +185,12 @@ class _MyhomepageState extends State<Myhomepage> {
                       ),
                     ]),
                   ),
+                   onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => MularPage('Wallpaper')));
+                  },
                 ),
                 InkWell(
                   child: Container(
@@ -291,12 +298,12 @@ class _MyhomepageState extends State<Myhomepage> {
                       )
                     ]),
                   ),
-                     onTap: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => wallpaper('Wallpaper')));
-                  },
+                  //    onTap: () {
+                  //   Navigator.push(
+                  //       context,
+                  //       MaterialPageRoute(
+                  //           builder: (context) => wallpaper('Wallpaper')));
+                  // },
 
                 ),
                 InkWell(

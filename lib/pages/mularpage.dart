@@ -1,22 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:mstraders/database.dart';
 import 'package:mstraders/modules/grass.dart';
+import 'package:mstraders/modules/mulars.dart';
 import 'package:mstraders/modules/wallpaper.dart';
 
 import '../constant.dart';
 import '../home.dart';
-class wallpaperPage extends StatefulWidget {
+class MularPage extends StatefulWidget {
   @override
   final String category;
 
-  wallpaperPage(this.category);
+  MularPage(this.category);
 
-  _wallpaperPageState createState() => _wallpaperPageState();
+  _MularPageState createState() => _MularPageState();
 }
 
-class _wallpaperPageState extends State<wallpaperPage> {
+class _MularPageState extends State<MularPage> {
   DatabaseService db = DatabaseService();
-  List<Wallpaper> wallpaperList = new List();
+  List<Mulars> mularsList = new List();
   ScrollController _scrollController = new ScrollController();
 
   TextEditingController search = new TextEditingController();
@@ -36,7 +37,7 @@ class _wallpaperPageState extends State<wallpaperPage> {
         if (currentDataLength >= 10) {
           print("List bigger than 10");
 
-          offset = wallpaperList.length;
+          offset = mularsList.length;
           fetch(offset);
         }
 
@@ -97,7 +98,7 @@ class _wallpaperPageState extends State<wallpaperPage> {
       ),
       body: ListView.builder(
         controller: _scrollController,
-        itemCount: wallpaperList.length,
+        itemCount: mularsList.length,
         itemBuilder: (BuildContext context, int index) {
           return Container(
             padding: EdgeInsets.all(5),
@@ -124,7 +125,7 @@ class _wallpaperPageState extends State<wallpaperPage> {
                           margin: EdgeInsets.all(5),
                           child: ClipRRect(
                               child: Image.network(
-                            '${wallpaperList[index].images}',
+                            '${mularsList[index].images}',
                             height: MediaQuery.of(context).size.height / 2,
                             width: MediaQuery.of(context).size.width / 1.3,
                             fit: BoxFit.cover,
@@ -135,12 +136,12 @@ class _wallpaperPageState extends State<wallpaperPage> {
                       //   style: TextStyle(
                       //       fontSize: 22, fontWeight: FontWeight.w900),
                       // ),
-                      Text("Category:${wallpaperList[index].type}"),
-                      Text("Name:${wallpaperList[index].name}"),
-                         Text("Stock:${wallpaperList[index].items}"),
-                            Text("Name:${wallpaperList[index].price}"),
-                               Text("Name:${wallpaperList[index].others}"),
-                                  Text("Made in:${wallpaperList[index].made}"),
+                      Text("Category:${mularsList[index].type}"),
+                      Text("Name:${mularsList[index].name}"),
+                         Text("Stock:${mularsList[index].items}"),
+                            Text("Name:${mularsList[index].price}"),
+                               Text("Name:${mularsList[index].others}"),
+                                  Text("Made in:${mularsList[index].made}"),
                     
                               Container(
                                 child: ElevatedButton(
@@ -171,9 +172,9 @@ class _wallpaperPageState extends State<wallpaperPage> {
                                        
                                             var res =
                                                 await db.insertOrder(
-                                                    wallpaperList[index].P_id,
-                                                    wallpaperList[index].type,
-                                                    wallpaperList[index].name,
+                                                    mularsList[index].P_id,
+                                                    mularsList[index].type,
+                                                    mularsList[index].name,
                                                     contact.text,
                                                     DateTime.now());
 
@@ -234,7 +235,7 @@ class _wallpaperPageState extends State<wallpaperPage> {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => wallpaperPage('Wallpaper')));
+                            builder: (context) => MularPage('Wallpaper')));
                   },
                 ),
 
@@ -252,15 +253,15 @@ class _wallpaperPageState extends State<wallpaperPage> {
   fetch(int offset) async {
     print("in fetch");
 
-    var data = await db.allitem();
+    var data = await db.allMulars();
     currentDataLength = data.length;
     print("below data");
 
     print("out of loop");
 
     setState(() {
-      for (Wallpaper p in data) {
-        wallpaperList.add(p);
+      for (Mulars p in data) {
+        mularsList.add(p);
       }
     });
   }
