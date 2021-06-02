@@ -124,6 +124,7 @@ class _CanvasPageState extends State<CanvasPage> {
                           padding: EdgeInsets.all(5),
                           margin: EdgeInsets.all(5),
                           child: ClipRRect(
+                             borderRadius: BorderRadius.circular(20),
                               child: Image.network(
                             '${canvasList[index].images}',
                             height: MediaQuery.of(context).size.height / 2,

@@ -2,8 +2,13 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:mstraders/modules/others.dart';
+import 'package:mstraders/modules/wallfoam.dart';
+import 'package:mstraders/pages/canvaspage.dart';
 import 'package:mstraders/pages/grass.dart';
 import 'package:mstraders/pages/mularpage.dart';
+import 'package:mstraders/pages/otherspage.dart';
+import 'package:mstraders/pages/wallfoampage.dart';
 import 'package:mstraders/pages/wallpaperpage.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 
@@ -34,17 +39,18 @@ class _MyhomepageState extends State<Myhomepage> {
                     margin: EdgeInsets.all(2),
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(22),
-                        border: Border.all(color: Colors.orange, width: 3)),
+                        border: Border.all(color: Colors.white, width: 3)),
                     child: Column(children: [
                       Container(
                           decoration: BoxDecoration(
                             shape: BoxShape.rectangle,
                               borderRadius: BorderRadius.circular(22),
                               border: Border.all(
-                                  color: Colors.orangeAccent, width: 4)),
-                          padding: EdgeInsets.all(2),
-                          margin: EdgeInsets.all(2),
+                                  color: Colors.white, width: 4)),
+                       padding: EdgeInsets.all(0),
+                          margin: EdgeInsets.all(0),
                           child: ClipRRect(
+                              borderRadius: BorderRadius.circular(20),
                               child: Image.network(
                             'https://www.vladana-kristena.cz/wp-upload/41879_1-5-panel-ks-hd-vytisknout-jeden-kus-karikatura-zdi-plak%C3%A1ty/pic.jpeg',
                             height: MediaQuery.of(context).size.height / 3,
@@ -55,6 +61,7 @@ class _MyhomepageState extends State<Myhomepage> {
                         "Canvas",
                         textAlign: TextAlign.center,
                         style: TextStyle(
+                            color: Colors.white,
                             fontSize: 22, fontWeight: FontWeight.w900),
                             maxLines: 1,
                             minFontSize: 12,
@@ -65,7 +72,7 @@ class _MyhomepageState extends State<Myhomepage> {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => MularPage('Wallpaper')));
+                            builder: (context) => CanvasPage('Wallpaper')));
                   },
                 ),
 
@@ -77,69 +84,21 @@ class _MyhomepageState extends State<Myhomepage> {
                     margin: EdgeInsets.all(2),
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(22),
-                        border: Border.all(color: Colors.orange, width: 3)),
+                        border: Border.all(color: Colors.white, width: 3)),
                     child: Column(children: [
                       Container(
                           decoration: BoxDecoration(
                             shape: BoxShape.rectangle,
                               borderRadius: BorderRadius.circular(22),
                               border: Border.all(
-                                  color: Colors.orangeAccent, width: 4)),
-                          padding: EdgeInsets.all(2),
-                          margin: EdgeInsets.all(2),
+                                  color: Colors.white, width: 4)),
+                         padding: EdgeInsets.all(0),
+                          margin: EdgeInsets.all(0),
                           child: ClipRRect(
+                              borderRadius: BorderRadius.circular(20),
                               child: Image.network(
                             'https://www.vladana-kristena.cz/wp-upload/41879_1-5-panel-ks-hd-vytisknout-jeden-kus-karikatura-zdi-plak%C3%A1ty/pic.jpeg',
                             height: MediaQuery.of(context).size.height / 3,
-                            width: MediaQuery.of(context).size.width / 3,
-                            fit: BoxFit.fill,
-                          ))),
-                      AutoSizeText(
-                        "Canvas",
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                            fontSize: 22, fontWeight: FontWeight.w900),
-                            maxLines: 1,
-                            minFontSize: 12,
-                      ),
-                    ]),
-                  ),
-                  onTap: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => MularPage('Wallpaper')));
-                  },
-                ),
-
-              ],
-            ),
-
-             Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                InkWell(
-                  child: Container(
-                    // height: MediaQuery.of(context).size.height / 03,
-                    // width: MediaQuery.of(context).size.width / 05,
-                    padding: EdgeInsets.all(2),
-                    margin: EdgeInsets.all(2),
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(22),
-                        border: Border.all(color: Colors.orange, width: 3)),
-                    child: Column(children: [
-                      Container(
-                          decoration: BoxDecoration(
-                            shape: BoxShape.rectangle,
-                              borderRadius: BorderRadius.circular(22),
-                              border: Border.all(
-                                  color: Colors.orangeAccent, width: 4)),
-                          padding: EdgeInsets.all(5),
-                          margin: EdgeInsets.all(5),
-                          child: ClipRRect(
-                              child: Image.network(
-                            'https://www.vladana-kristena.cz/wp-upload/41879_1-5-panel-ks-hd-vytisknout-jeden-kus-karikatura-zdi-plak%C3%A1ty/pic.jpeg',
-                         height: MediaQuery.of(context).size.height / 3,
                             width: MediaQuery.of(context).size.width / 3,
                             fit: BoxFit.fill,
                           ))),
@@ -147,6 +106,7 @@ class _MyhomepageState extends State<Myhomepage> {
                         "Mural",
                         textAlign: TextAlign.center,
                         style: TextStyle(
+                          color: Colors.white,
                             fontSize: 22, fontWeight: FontWeight.w900),
                             maxLines: 1,
                             minFontSize: 12,
@@ -161,35 +121,44 @@ class _MyhomepageState extends State<Myhomepage> {
                   },
                 ),
 
-                  InkWell(
+              ],
+            ),
+
+             Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                InkWell(
                   child: Container(
                     // height: MediaQuery.of(context).size.height / 03,
-                    // width: MediaQuery.of(context).size.width / 0.6,
+                    // width: MediaQuery.of(context).size.width / 05,
                     padding: EdgeInsets.all(2),
                     margin: EdgeInsets.all(2),
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(22),
-                        border: Border.all(color: Colors.orange, width: 3)),
+                        border: Border.all(color: Colors.white, width: 3)),
                     child: Column(children: [
                       Container(
                           decoration: BoxDecoration(
                             shape: BoxShape.rectangle,
                               borderRadius: BorderRadius.circular(22),
                               border: Border.all(
-                                  color: Colors.orangeAccent, width: 4)),
-                          padding: EdgeInsets.all(2),
-                          margin: EdgeInsets.all(2),
+                                  color: Colors.white, width: 4)),
+                        padding: EdgeInsets.all(0),
+                          margin: EdgeInsets.all(0),
                           child: ClipRRect(
+                              borderRadius: BorderRadius.circular(20),
                               child: Image.network(
                             'https://www.vladana-kristena.cz/wp-upload/41879_1-5-panel-ks-hd-vytisknout-jeden-kus-karikatura-zdi-plak%C3%A1ty/pic.jpeg',
-                            height: MediaQuery.of(context).size.height / 3,
+                         height: MediaQuery.of(context).size.height / 3,
                             width: MediaQuery.of(context).size.width / 3,
                             fit: BoxFit.fill,
                           ))),
                       AutoSizeText(
-                        "Canvas",
+                        "Wall Foam",
+                        
                         textAlign: TextAlign.center,
                         style: TextStyle(
+                           color: Colors.white,
                             fontSize: 22, fontWeight: FontWeight.w900),
                             maxLines: 1,
                             minFontSize: 12,
@@ -200,7 +169,52 @@ class _MyhomepageState extends State<Myhomepage> {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => MularPage('Wallpaper')));
+                            builder: (context) => FoamPage('Wallpaper')));
+                  },
+                ),
+
+                  InkWell(
+                  child: Container(
+                    // height: MediaQuery.of(context).size.height / 03,
+                    // width: MediaQuery.of(context).size.width / 0.6,
+                    padding: EdgeInsets.all(2),
+                    margin: EdgeInsets.all(2),
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(22),
+                        border: Border.all(color: Colors.white, width: 3)),
+                    child: Column(children: [
+                      Container(
+                          decoration: BoxDecoration(
+                            shape: BoxShape.rectangle,
+                              borderRadius: BorderRadius.circular(22),
+                              border: Border.all(
+                                  color: Colors.white, width: 4)),
+                         padding: EdgeInsets.all(0),
+                          margin: EdgeInsets.all(0),
+                          child: ClipRRect(
+                              borderRadius: BorderRadius.circular(20),
+                              child: Image.network(
+                            'https://www.vladana-kristena.cz/wp-upload/41879_1-5-panel-ks-hd-vytisknout-jeden-kus-karikatura-zdi-plak%C3%A1ty/pic.jpeg',
+                            height: MediaQuery.of(context).size.height / 3,
+                            width: MediaQuery.of(context).size.width / 3,
+                            fit: BoxFit.fill,
+                          ))),
+                      AutoSizeText(
+                        "Wallpaper",
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                           color: Colors.white,
+                            fontSize: 22, fontWeight: FontWeight.w900),
+                            maxLines: 1,
+                            minFontSize: 12,
+                      ),
+                    ]),
+                  ),
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => wallpaperPage('Wallpaper')));
                   },
                 ),
               ],
@@ -217,17 +231,18 @@ class _MyhomepageState extends State<Myhomepage> {
                     margin: EdgeInsets.all(2),
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(22),
-                        border: Border.all(color: Colors.orange, width: 3)),
+                        border: Border.all(color: Colors.white, width: 3)),
                     child: Column(children: [
                       Container(
                           decoration: BoxDecoration(
                             shape: BoxShape.rectangle,
                               borderRadius: BorderRadius.circular(22),
                               border: Border.all(
-                                  color: Colors.orangeAccent, width: 4)),
-                          padding: EdgeInsets.all(5),
-                          margin: EdgeInsets.all(5),
+                                  color: Colors.white, width: 4)),
+                           padding: EdgeInsets.all(0),
+                          margin: EdgeInsets.all(0),
                           child: ClipRRect(
+                              borderRadius: BorderRadius.circular(20),
                               child: Image.network(
                             'https://www.vladana-kristena.cz/wp-upload/41879_1-5-panel-ks-hd-vytisknout-jeden-kus-karikatura-zdi-plak%C3%A1ty/pic.jpeg',
                            height: MediaQuery.of(context).size.height / 3,
@@ -235,9 +250,10 @@ class _MyhomepageState extends State<Myhomepage> {
                             fit: BoxFit.fill,
                           ))),
                       AutoSizeText(
-                        "Wallfoam",
+                        "Artificial Grass",
                         textAlign: TextAlign.center,
                         style: TextStyle(
+                            color: Colors.white,
                             fontSize: 22, fontWeight: FontWeight.w900),
                             maxLines: 1,
                             minFontSize: 12,
@@ -248,7 +264,7 @@ class _MyhomepageState extends State<Myhomepage> {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => MularPage('Wallpaper')));
+                            builder: (context) => grasspage('Wallpaper')));
                   },
                 ),
                   
@@ -260,27 +276,31 @@ class _MyhomepageState extends State<Myhomepage> {
                     margin: EdgeInsets.all(2),
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(22),
-                        border: Border.all(color: Colors.orange, width: 3)),
+                        border: Border.all(color: Colors.white, width: 3)),
                     child: Column(children: [
                       Container(
                           decoration: BoxDecoration(
                             shape: BoxShape.rectangle,
                               borderRadius: BorderRadius.circular(22),
                               border: Border.all(
-                                  color: Colors.orangeAccent, width: 4)),
-                          padding: EdgeInsets.all(5),
-                          margin: EdgeInsets.all(5),
+                                  color: Colors.white, width: 4)),
+                          padding: EdgeInsets.all(0),
+                          margin: EdgeInsets.all(0),
+                           
                           child: ClipRRect(
+                            borderRadius: BorderRadius.circular(20),
                               child: Image.network(
                             'https://www.vladana-kristena.cz/wp-upload/41879_1-5-panel-ks-hd-vytisknout-jeden-kus-karikatura-zdi-plak%C3%A1ty/pic.jpeg',
-                          height: MediaQuery.of(context).size.height / 3,
+                            height: MediaQuery.of(context).size.height / 3,
                             width: MediaQuery.of(context).size.width / 3,
                             fit: BoxFit.fill,
                           ))),
                       AutoSizeText(
-                        "Wallfoam",
+                        
+                        "Others...",
                         textAlign: TextAlign.center,
                         style: TextStyle(
+                            color: Colors.white,
                             fontSize: 22, fontWeight: FontWeight.w900),
                             maxLines: 1,
                             minFontSize: 12,
@@ -291,17 +311,13 @@ class _MyhomepageState extends State<Myhomepage> {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => MularPage('Wallpaper')));
+                            builder: (context) => otherPage('Wallpaper')));
                   },
                 ),
               ],
             ),
 
             
-            
-
-           
-
            
             Row(mainAxisAlignment: MainAxisAlignment.center, children: [
               Container(
@@ -365,7 +381,7 @@ class _MyhomepageState extends State<Myhomepage> {
             //             decoration: BoxDecoration(
             //                 borderRadius: BorderRadius.circular(22),
             //                 border: Border.all(
-            //                     color: Colors.orangeAccent, width: 4)),
+            //                     color: Colors.white, width: 4)),
             //             padding: EdgeInsets.all(5),
             //             margin: EdgeInsets.all(5),
             //             child: Image.network(

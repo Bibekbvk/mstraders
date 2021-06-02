@@ -125,6 +125,7 @@ class _otherPageState extends State<otherPage> {
                           padding: EdgeInsets.all(5),
                           margin: EdgeInsets.all(5),
                           child: ClipRRect(
+                              borderRadius: BorderRadius.circular(20),
                               child: Image.network(
                             '${otherList[index].images}',
                             height: MediaQuery.of(context).size.height / 2,

@@ -123,6 +123,7 @@ class _wallpaperPageState extends State<wallpaperPage> {
                           padding: EdgeInsets.all(5),
                           margin: EdgeInsets.all(5),
                           child: ClipRRect(
+                             borderRadius: BorderRadius.circular(20),
                               child: Image.network(
                             '${wallpaperList[index].images}',
                             height: MediaQuery.of(context).size.height / 2,

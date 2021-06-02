@@ -124,7 +124,9 @@ class _MularPageState extends State<MularPage> {
                           padding: EdgeInsets.all(5),
                           margin: EdgeInsets.all(5),
                           child: ClipRRect(
+                             borderRadius: BorderRadius.circular(20),
                               child: Image.network(
+                                
                             '${mularsList[index].images}',
                             height: MediaQuery.of(context).size.height / 2,
                             width: MediaQuery.of(context).size.width / 1.3,

@@ -123,6 +123,7 @@ class _grasspageState extends State<grasspage> {
                           padding: EdgeInsets.all(5),
                           margin: EdgeInsets.all(5),
                           child: ClipRRect(
+                             borderRadius: BorderRadius.circular(20),
                               child: Image.network(
                             '${grassLis[index].images}',
                             height: MediaQuery.of(context).size.height / 2,

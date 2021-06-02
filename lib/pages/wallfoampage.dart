@@ -124,6 +124,7 @@ class _FoamPageState extends State<FoamPage> {
                           padding: EdgeInsets.all(5),
                           margin: EdgeInsets.all(5),
                           child: ClipRRect(
+                             borderRadius: BorderRadius.circular(20),
                               child: Image.network(
                             '${foamList[index].images}',
                             height: MediaQuery.of(context).size.height / 2,
