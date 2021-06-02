@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:mstraders/constant.dart';
 import 'package:mstraders/modules/canvas.dart';
 import 'package:mstraders/modules/grass.dart';
+import 'package:mstraders/modules/helpinfo.dart';
 import 'package:mstraders/modules/mulars.dart';
 import 'package:mstraders/modules/others.dart';
 import 'package:mstraders/modules/wallfoam.dart';
@@ -41,7 +42,7 @@ Future<List<Wallpaper>> allitem() async {
 
 Future<List<Canvass>> allCanvas() async {
     var data = await http.get(
-      "$BASE_URL/api/getwallpaper",
+      "$BASE_URL/api/getcanvas",
       
     );
 
@@ -71,7 +72,7 @@ Future<List<Canvass>> allCanvas() async {
 
 Future<List<WallFoam>> allFoam() async {
     var data = await http.get(
-      "$BASE_URL/api/getwallpaper",
+      "$BASE_URL/api/wallfoam",
       
     );
 
@@ -126,6 +127,29 @@ Future<List<Others>> allother() async {
 
 
 
+Future<List<Dealer>> dealer() async {
+    var data = await http.get(
+      "$BASE_URL/api/getdealer",
+      
+    );
+
+    var jsonData = json.decode((data.body));
+
+    List<Dealer> dealer = [];
+    for (var each in jsonData) {
+      Dealer dealerList = Dealer(
+          topic: each['topic'],
+          image: each['image'],
+          details: each['details'],
+          
+          );
+      dealer.add(dealerList);
+    }
+    return dealer;
+  }
+
+
+
 Future<List<Grass>> allgrass() async {
     var data = await http.get(
       "$BASE_URL/api/getgrass",
@@ -155,7 +179,7 @@ Future<List<Grass>> allgrass() async {
   
 Future<List<Mulars>> allMulars() async {
     var data = await http.get(
-      "$BASE_URL/api/getgrass",
+      "$BASE_URL/api/getmural",
       
     );
 
