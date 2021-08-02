@@ -61,37 +61,20 @@ class _CanvasPageState extends State<CanvasPage> {
           child: Row(
             children: [
               Expanded(
-                flex: 7,
+             
                 child: Container(
-                  decoration: BoxDecoration(
-                      color: Colors.white,
+                  decoration: BoxDecoration(         
                       borderRadius: BorderRadius.circular(90)),
-                  child: TextFormField(
-                    style: TextStyle(color: Colors.black),
-                    controller: search,
-                    maxLines: 1,
-                    decoration: InputDecoration(
-                      fillColor: Colors.red,
-                      hintText: "Search",
-                      labelText: "Mobile number / Email",
-                    ),
+                      child:ListTile(
+                        leading: Icon(Icons.photo_album),
+                        title:Text("Canvas", style: TextStyle(fontSize: 22, color: Colors.white),),
+                        
+
+                      )
                   ),
                 ),
-              ),
-              Expanded(
-                  child: IconButton(
-                onPressed: () {
-                  // Navigator.push(
-                  //     context,
-                  //     MaterialPageRoute(
-                  //         builder: (context) =>
-                  //             searchMedicine(name: search.text)));
-                },
-                icon: Icon(
-                  Icons.search,
-                  color: Colors.white,
-                ),
-              )),
+              
+          
             ],
           ),
         ),
@@ -108,8 +91,7 @@ class _CanvasPageState extends State<CanvasPage> {
               children: [
                       InkWell(
                   child: Container(
-                    // height: MediaQuery.of(context).size.height / 2,
-                    // width: MediaQuery.of(context).size.width / 2,
+
                     padding: EdgeInsets.all(2),
                     margin: EdgeInsets.all(2),
                     decoration: BoxDecoration(
@@ -131,18 +113,15 @@ class _CanvasPageState extends State<CanvasPage> {
                             width: MediaQuery.of(context).size.width / 1.3,
                             fit: BoxFit.cover,
                           ))),
-                      // Text(
-                      //   "Canvas",
-                      //   textAlign: TextAlign.center,
-                      //   style: TextStyle(
-                      //       fontSize: 22, fontWeight: FontWeight.w900),
-                      // ),
+
                       Text("Category:${canvasList[index].type}"),
+                      Text("Product Code:${canvasList[index].P_id}"),
                       Text("Name:${canvasList[index].name}"),
-                         Text("Stock:${canvasList[index].items}"),
-                            Text("Name:${canvasList[index].price}"),
-                               Text("Name:${canvasList[index].others}"),
+                         Text("In Stock:${canvasList[index].items}"),
+                            Text("Price:${canvasList[index].price}"),
+                               Text("Quantity:${canvasList[index].others}"),
                                   Text("Made in:${canvasList[index].made}"),
+                                   Text("${canvasList[index].descr}"),
                     
                               Container(
                                 child: ElevatedButton(
@@ -169,8 +148,26 @@ class _CanvasPageState extends State<CanvasPage> {
                                           child: Text("Submit"),
                                           color: Colors.cyanAccent,
                                           onPressed: () async {
-                                        
-                                       
+                                           if(contact.text==''){
+                                              showDialog(
+                                                context: context,
+                                                builder: (context) => AlertDialog(
+                                                    title: Text(
+                                                        "Please enter your contact number"),
+                                                        actions: [
+                                                          RaisedButton(
+                                                            child:Text("OK"),
+                                                            onPressed:(){
+                                                             Navigator.of(context, rootNavigator: true).pop();
+
+                                                            }
+                                                          )
+                                                        ],
+                                                        ),
+                                                        
+                                              );
+
+                                           }else{
                                             var res =
                                                 await db.insertOrder(
                                                     canvasList[index].P_id,
@@ -198,28 +195,13 @@ class _CanvasPageState extends State<CanvasPage> {
                                                         
                                               );
 
-                                              print("success");
-                                            
-                                                //  Navigator.push(
-                                                //   context,
-                                                //   MaterialPageRoute(
-                                                //       builder: (context) =>
-                                                //          Myhomepage()));
-                                                
-                                         
-                                              // Navigator.pop(context);
-                                              // Navigator.pop(context);
-                                              // Navigator.push(
-                                              //     context,
-                                              //     MaterialPageRoute(
-                                              //         builder: (context) =>
-                                              //             myMedicines()));
                                             } else {
                                               print("failure");
                                             }
+                                           }
                                           },
                                         ),
-                                       // RaisedButton(child: Text("Cancel"))
+                                    
                                       ],
                                     ),
                                   );
