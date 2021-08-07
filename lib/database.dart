@@ -101,7 +101,7 @@ Future<List<WallFoam>> allFoam() async {
 
 Future<List<Others>> allother() async {
     var data = await http.get(
-      "$BASE_URL/api/getwallpaper",
+      "$BASE_URL/api/getother",
       
     );
 
