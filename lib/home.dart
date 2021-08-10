@@ -22,7 +22,7 @@ class _MyhomepageState extends State<Myhomepage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.brown.shade200,
+      backgroundColor: Colors.brown.shade100,
       body: SafeArea(
         child: ListView(
           children: [

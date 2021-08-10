@@ -55,42 +55,25 @@ class _wallpaperPageState extends State<wallpaperPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
+           appBar: AppBar(
         title: Center(
           child: Row(
             children: [
               Expanded(
-                flex: 7,
+             
                 child: Container(
-                  decoration: BoxDecoration(
-                      color: Colors.white,
+                  decoration: BoxDecoration(         
                       borderRadius: BorderRadius.circular(90)),
-                  child: TextFormField(
-                    style: TextStyle(color: Colors.black),
-                    controller: search,
-                    maxLines: 1,
-                    decoration: InputDecoration(
-                      fillColor: Colors.red,
-                      hintText: "Search",
-                      labelText: "Mobile number / Email",
-                    ),
+                      child:ListTile(
+                        leading: Icon(Icons.photo_album),
+                        title:Text("Wallpaper Page", style: TextStyle(fontSize: 22, color: Colors.white),),
+                        
+
+                      )
                   ),
                 ),
-              ),
-              Expanded(
-                  child: IconButton(
-                onPressed: () {
-                  // Navigator.push(
-                  //     context,
-                  //     MaterialPageRoute(
-                  //         builder: (context) =>
-                  //             searchMedicine(name: search.text)));
-                },
-                icon: Icon(
-                  Icons.search,
-                  color: Colors.white,
-                ),
-              )),
+              
+          
             ],
           ),
         ),
