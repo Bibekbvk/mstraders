@@ -6,6 +6,7 @@ import 'package:mstraders/modules/wallpaper.dart';
 
 import '../constant.dart';
 import '../home.dart';
+
 class CanvasPage extends StatefulWidget {
   @override
   final String category;
@@ -61,20 +62,17 @@ class _CanvasPageState extends State<CanvasPage> {
           child: Row(
             children: [
               Expanded(
-             
                 child: Container(
-                  decoration: BoxDecoration(         
-                      borderRadius: BorderRadius.circular(90)),
-                      child:ListTile(
-                        leading: Icon(Icons.photo_album),
-                        title:Text("Canvas", style: TextStyle(fontSize: 22, color: Colors.white),),
-                        
-
-                      )
-                  ),
-                ),
-              
-          
+                    decoration:
+                        BoxDecoration(borderRadius: BorderRadius.circular(90)),
+                    child: ListTile(
+                      leading: Icon(Icons.photo_album),
+                      title: Text(
+                        "Canvas",
+                        style: TextStyle(fontSize: 22, color: Colors.white),
+                      ),
+                    )),
+              ),
             ],
           ),
         ),
@@ -89,9 +87,8 @@ class _CanvasPageState extends State<CanvasPage> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                      InkWell(
+                InkWell(
                   child: Container(
-
                     padding: EdgeInsets.all(2),
                     margin: EdgeInsets.all(2),
                     decoration: BoxDecoration(
@@ -102,116 +99,104 @@ class _CanvasPageState extends State<CanvasPage> {
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(22),
                               border: Border.all(
-                          color: Colors.orangeAccent, width: 2)),
+                                  color: Colors.orangeAccent, width: 2)),
                           padding: EdgeInsets.all(5),
                           margin: EdgeInsets.all(5),
                           child: ClipRRect(
-                             borderRadius: BorderRadius.circular(20),
+                              borderRadius: BorderRadius.circular(20),
                               child: Image.network(
-                            '${canvasList[index].images}',
-                            height: MediaQuery.of(context).size.height / 2,
-                            width: MediaQuery.of(context).size.width / 1.3,
-                            fit: BoxFit.cover,
-                          ))),
-
+                                '${canvasList[index].images}',
+                                height: MediaQuery.of(context).size.height / 2,
+                                width: MediaQuery.of(context).size.width / 1.3,
+                                fit: BoxFit.cover,
+                              ))),
                       Text("Category:${canvasList[index].type}"),
                       Text("Product Code:${canvasList[index].P_id}"),
                       Text("Name:${canvasList[index].name}"),
-                         Text("In Stock:${canvasList[index].items}"),
-                            Text("Price:${canvasList[index].price}"),
-                               Text("Quantity:${canvasList[index].others}"),
-                                  Text("Made in:${canvasList[index].made}"),
-                                   Text("${canvasList[index].descr}"),
-                    
-                              Container(
-                                child: ElevatedButton(
-                                  //hoverColor: Colors.blueAccent,
-                                  
-                                  child: Text("Order this item"),
-                                  onPressed:(){
-                                       print("hello");
-                                      
-                                  showDialog(
-                                    context: context,
-                                    builder: (context) => AlertDialog(
-                                      title: Text(
-                                          "Please enter you active number, technician will call you for more details"),
-                                      content: TextField(
-                                        controller: contact,
-                                        decoration: InputDecoration(
-                                          icon: Icon(Icons.contact_phone),
-                                          labelText: "Enter your active number"
-                                        ),
-                                      ),
-                                      actions: [
-                                        RaisedButton(
-                                          child: Text("Submit"),
-                                          color: Colors.cyanAccent,
-                                          onPressed: () async {
-                                           if(contact.text==''){
-                                              showDialog(
-                                                context: context,
-                                                builder: (context) => AlertDialog(
-                                                    title: Text(
-                                                        "Please enter your contact number"),
-                                                        actions: [
-                                                          RaisedButton(
-                                                            child:Text("OK"),
-                                                            onPressed:(){
-                                                             Navigator.of(context, rootNavigator: true).pop();
+                      Text("In Stock:${canvasList[index].items}"),
+                      Text("Price:${canvasList[index].price}"),
+                      Text("Quantity:${canvasList[index].others}"),
+                      Text("Made in:${canvasList[index].made}"),
+                      Text("${canvasList[index].descr}"),
+                      Container(
+                        child: ElevatedButton(
+                            //hoverColor: Colors.blueAccent,
 
-                                                            }
-                                                          )
-                                                        ],
-                                                        ),
-                                                        
-                                              );
+                            child: Text("Order this item"),
+                            onPressed: () {
+                              print("hello");
 
-                                           }else{
-                                            var res =
-                                                await db.insertOrder(
-                                                    canvasList[index].P_id,
-                                                    canvasList[index].type,
-                                                    canvasList[index].name,
-                                                    contact.text,
-                                                    DateTime.now());
+                              showDialog(
+                                context: context,
+                                builder: (context) => AlertDialog(
+                                  title: Text(
+                                      "Please enter you active number, technician will call you for more details"),
+                                  content: TextField(
+                                    controller: contact,
+                                    decoration: InputDecoration(
+                                        icon: Icon(Icons.contact_phone),
+                                        labelText: "Enter your active number"),
+                                  ),
+                                  actions: [
+                                    RaisedButton(
+                                      child: Text("Submit"),
+                                      color: Colors.cyanAccent,
+                                      onPressed: () async {
+                                        if (contact.text == '') {
+                                          showDialog(
+                                            context: context,
+                                            builder: (context) => AlertDialog(
+                                              title: Text(
+                                                  "Please enter your contact number"),
+                                              actions: [
+                                                RaisedButton(
+                                                    child: Text("OK"),
+                                                    onPressed: () {
+                                                      Navigator.of(context,
+                                                              rootNavigator:
+                                                                  true)
+                                                          .pop();
+                                                    })
+                                              ],
+                                            ),
+                                          );
+                                        } else {
+                                          var res = await db.insertOrder(
+                                              canvasList[index].P_id,
+                                              canvasList[index].type,
+                                              canvasList[index].name,
+                                              contact.text,
+                                              DateTime.now());
 
-                                            if (res == 200) {
-                                              showDialog(
-                                                context: context,
-                                                builder: (context) => AlertDialog(
-                                                    title: Text(
-                                                        "Successfully purchased, we will call you for more details"),
-                                                        actions: [
-                                                          RaisedButton(
-                                                            child:Text("OK"),
-                                                            onPressed:(){
-                                                             Navigator.of(context, rootNavigator: true).pop();
-
-                                                            }
-                                                          )
-                                                        ],
-                                                        ),
-                                                        
-                                              );
-
-                                            } else {
-                                              print("failure");
-                                            }
-                                           }
-                                          },
-                                        ),
-                                    
-                                      ],
+                                          if (res == 200) {
+                                            showDialog(
+                                              context: context,
+                                              builder: (context) => AlertDialog(
+                                                title: Text(
+                                                    "Successfully purchased, we will call you for more details"),
+                                                actions: [
+                                                  RaisedButton(
+                                                      child: Text("OK"),
+                                                      onPressed: () {
+                                                        Navigator.of(context,
+                                                                rootNavigator:
+                                                                    true)
+                                                            .pop();
+                                                      })
+                                                ],
+                                              ),
+                                            );
+                                          } else {
+                                            print("failure");
+                                          }
+                                        }
+                                      },
                                     ),
-                                  );
-
-
-                                  }
-                                    
+                                  ],
                                 ),
-
-                              )
+                              );
+                            }),
+                      )
                     ]),
                   ),
                   onTap: () {
@@ -221,10 +206,6 @@ class _CanvasPageState extends State<CanvasPage> {
                             builder: (context) => CanvasPage('Wallpaper')));
                   },
                 ),
-
-
-
-                
               ],
             ),
           );
