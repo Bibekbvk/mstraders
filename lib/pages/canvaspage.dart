@@ -7,6 +7,9 @@ import 'package:mstraders/modules/wallpaper.dart';
 import '../constant.dart';
 import '../home.dart';
 
+
+//trhis is canvas page
+
 class CanvasPage extends StatefulWidget {
   @override
   final String category;
