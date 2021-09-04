@@ -211,7 +211,7 @@ Future<List<Mulars>> allMulars() async {
     var data = await http.get(
       "$BASE_URL/api/insertOrder?P_id=$PId&type=$type&name=$name&contact=$contact&time=$time",
     );
-    print("lamooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo");
+    //print("lamooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo");
     int code = data.statusCode;
     var jsonData = json.decode((data.body));
     String val = jsonData["error"];
