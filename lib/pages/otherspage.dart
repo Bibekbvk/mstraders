@@ -121,12 +121,14 @@ class _otherPageState extends State<otherPage> {
                       //   style: TextStyle(
                       //       fontSize: 22, fontWeight: FontWeight.w900),
                       // ),
-                      Text("Category:${otherList[index].type}"),
+                       Text("Category:${otherList[index].type}"),
+                      Text("Product Code:${otherList[index].P_id}"),
                       Text("Name:${otherList[index].name}"),
-                         Text("Stock:${otherList[index].items}"),
-                            Text("Name:${otherList[index].price}"),
-                               Text("Name:${otherList[index].others}"),
-                                  Text("Made in:${otherList[index].made}"),
+                      Text("In Stock:${otherList[index].items}"),
+                      Text("Price:${otherList[index].price}"),
+                      Text("Quantity:${otherList[index].others}"),
+                      Text("Made in:${otherList[index].made}"),
+                      Text("${otherList[index].descr}"),
                     
                               Container(
                                 child: ElevatedButton(

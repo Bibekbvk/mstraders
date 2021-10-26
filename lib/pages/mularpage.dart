@@ -121,12 +121,14 @@ class _MularPageState extends State<MularPage> {
                       //   style: TextStyle(
                       //       fontSize: 22, fontWeight: FontWeight.w900),
                       // ),
-                      Text("Category:${mularsList[index].type}"),
+                     Text("Category:${mularsList[index].type}"),
+                      Text("Product Code:${mularsList[index].P_id}"),
                       Text("Name:${mularsList[index].name}"),
-                         Text("Stock:${mularsList[index].items}"),
-                            Text("Name:${mularsList[index].price}"),
-                               Text("Name:${mularsList[index].others}"),
-                                  Text("Made in:${mularsList[index].made}"),
+                      Text("In Stock:${mularsList[index].items}"),
+                      Text("Price:${mularsList[index].price}"),
+                      Text("Quantity:${mularsList[index].others}"),
+                      Text("Made in:${mularsList[index].made}"),
+                      Text("${mularsList[index].descr}"),
                     
                               Container(
                                 child: ElevatedButton(

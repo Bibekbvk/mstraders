@@ -209,7 +209,7 @@ Future<List<Mulars>> allMulars() async {
     //var encodeduuid = Uri.encodeComponent(uuid)c
     //var encodeProduct_id = Uri.encodeComponent(product_id);
     var data = await http.get(
-      "$BASE_URL/api/insertOrder?P_id=$PId&type=$type&name=$name&contact=$contact&time=$time",
+      "$BASE_URL/api/insertOrder?P_id=$PId&type=$type&name=$name&contact=$contact&date=$time",
     );
     //print("lamooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo");
     int code = data.statusCode;

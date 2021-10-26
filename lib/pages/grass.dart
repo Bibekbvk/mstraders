@@ -120,11 +120,13 @@ class _grasspageState extends State<grasspage> {
                       //       fontSize: 22, fontWeight: FontWeight.w900),
                       // ),
                       Text("Category:${grassLis[index].type}"),
+                      Text("Product Code:${grassLis[index].P_id}"),
                       Text("Name:${grassLis[index].name}"),
-                         Text("Stock:${grassLis[index].items}"),
-                            Text("Name:${grassLis[index].price}"),
-                               Text("Name:${grassLis[index].others}"),
-                                  Text("Made in:${grassLis[index].made}"),
+                      Text("In Stock:${grassLis[index].items}"),
+                      Text("Price:${grassLis[index].price}"),
+                      Text("Quantity:${grassLis[index].others}"),
+                      Text("Made in:${grassLis[index].made}"),
+                      Text("${grassLis[index].descr}"),
                     
                               Container(
                                 child: ElevatedButton(

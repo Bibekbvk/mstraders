@@ -121,11 +121,13 @@ class _FoamPageState extends State<FoamPage> {
                       //       fontSize: 22, fontWeight: FontWeight.w900),
                       // ),
                       Text("Category:${foamList[index].type}"),
+                      Text("Product Code:${foamList[index].P_id}"),
                       Text("Name:${foamList[index].name}"),
-                         Text("Stock:${foamList[index].items}"),
-                            Text("Name:${foamList[index].price}"),
-                               Text("Name:${foamList[index].others}"),
-                                  Text("Made in:${foamList[index].made}"),
+                      Text("In Stock:${foamList[index].items}"),
+                      Text("Price:${foamList[index].price}"),
+                      Text("Quantity:${foamList[index].others}"),
+                      Text("Made in:${foamList[index].made}"),
+                      Text("${foamList[index].descr}"),
                     
                               Container(
                                 child: ElevatedButton(

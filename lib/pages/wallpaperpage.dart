@@ -119,12 +119,15 @@ class _wallpaperPageState extends State<wallpaperPage> {
                       //   style: TextStyle(
                       //       fontSize: 22, fontWeight: FontWeight.w900),
                       // ),
+                      //Text("Category:${wallpaperList[index].type}"),
                       Text("Category:${wallpaperList[index].type}"),
+                      Text("Product Code:${wallpaperList[index].P_id}"),
                       Text("Name:${wallpaperList[index].name}"),
-                         Text("Stock:${wallpaperList[index].items}"),
-                            Text("Name:${wallpaperList[index].price}"),
-                               Text("Name:${wallpaperList[index].others}"),
-                                  Text("Made in:${wallpaperList[index].made}"),
+                      Text("In Stock:${wallpaperList[index].items}"),
+                      Text("Price:${wallpaperList[index].price}"),
+                      Text("Quantity:${wallpaperList[index].others}"),
+                      Text("Made in:${wallpaperList[index].made}"),
+                      Text("${wallpaperList[index].descr}"),
                     
                               Container(
                                 child: ElevatedButton(
